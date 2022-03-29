@@ -3,14 +3,10 @@ class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         //Way1: Using vector
-        int n=nums.size();
-        vector<int> d(n,0);
-        for(int i=0;i<n;i++)
-            d[nums[i]]++;
-        for(int i=0;i<n;i++){
-            if(d[i]>1)
-                return i;
-        }
+        
+        int n=nums.size(); vector<int> d(n,0);
+        for(int i=0;i<n;i++) d[nums[i]]++;
+        for(int i=0;i<n;i++) if(d[i]>1) return i;
         return 0;
         
         //Way2: Using Two pointers
