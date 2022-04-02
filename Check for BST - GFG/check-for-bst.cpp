@@ -22,20 +22,30 @@ struct Node {
 class Solution
 {
     public:
-    //Function to check whether a Binary Tree is BST or not.
-    Node *prev=NULL;
-    int flag=1;
-    void inorder(Node *root){
-        if(!root) return;
-        inorder(root->left);
-        if(prev!=NULL && prev->data>root->data) 
-        flag=0;
-        prev=root;
-        inorder(root->right);
+    // Node *prev=NULL;
+    // int flag=1;
+    //Way1: Using inorder traversal
+    // void inorder(Node *root){
+    //     if(!root) return;
+    //     inorder(root->left);
+    //     if(prev!=NULL && prev->data>root->data) 
+    //     flag=0;
+    //     prev=root;
+    //     inorder(root->right);
+    // }
+    //
+    bool isValid(Node *root, long minVal, long maxVal){
+        if(!root) return true;
+        if(root->data>=maxVal || root->data<=minVal) return false;
+        return isValid(root->left,minVal,root->data) && isValid(root->right,root->data,maxVal);
     }
     bool isBST(Node* root) {
-        inorder(root);
-        return flag;
+        //Way1: Using inorder traversal
+        // inorder(root);
+        // return flag;
+        
+        //Way2: By setting the min,max range of each node
+         return isValid(root,INT_MIN,INT_MAX);  
     }
 };
 
