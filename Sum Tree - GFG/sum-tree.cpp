@@ -95,18 +95,18 @@ struct Node
 class Solution
 {
     public:
-    int solve(Node *root,int& temp, int& sum, int& check){
+    int solve(Node *root, int& sum, int& check){
         if(!root) return 0;
         if(!root->left && !root->right) return root->data;
-        sum=solve(root->left,temp,sum,check)+solve(root->right,temp,sum,check);
+        sum=solve(root->left,sum,check)+solve(root->right,sum,check);
         if(root->data!=sum)
             check=0;
         else root->data+=sum;
         return root->data;
     }
     bool isSumTree(Node* root){
-        int check=true,temp=0, sum=0;
-        solve(root,temp,sum,check);
+        int check=true, sum=0;
+        solve(root,sum,check);
         return check;
     }
     
