@@ -13,7 +13,7 @@ public:
         //Way1: Sorting function
         // sort(arr,arr+n);
         
-        //Way2: Co
+        //Way2: Counting and placing ele accordingly 
         int count0=0;
         for(int i=0;i<n;i++) if(arr[i]==0) count0++;
         for(int i=0;i<count0;i++) arr[i]=0;
