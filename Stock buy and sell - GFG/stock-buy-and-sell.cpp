@@ -30,32 +30,23 @@ int main() {
 
 // This function finds the buy sell schedule for maximum profit
 void stockBuySell(int price[], int n) {
-   vector<vector<int>> ans;
-   for (int i=1; i<n; i++){
-       
-       vector<int>temp;
-       if (price[i] > price[i-1]){
-           temp.push_back(i-1);
-           i++;
-           while(i < n){
-               if (price[i] >= price[i-1]){
-                   i++;
-               }
-               else{
-                   break;
-               }
-           }
-           temp.push_back(i-1);
-           ans.push_back(temp);
-       }
-       }
-       if (ans.empty()){
-           cout<<"No Profit"<<endl;
-           return;
-       }
-       for (auto i:ans){
-           cout<<"(";
-           cout<<i[0]<<" ";
-           cout<<i[1]<<") ";
-       }cout<<endl;
+    vector<vector<int>> vec; 
+    for(int i=1;i<n;i++){
+        vector<int> temp;
+        if(price[i-1]<price[i]){
+            temp.push_back(i-1); i++;
+        
+            while(i<n){
+                if(price[i-1]<=price[i]) i++;
+                else break;
+            }
+            temp.push_back(i-1); vec.push_back(temp);
+        }
+    }
+    if(vec.empty()) { 
+        cout<<"No Profit\n"; return;
+    }
+    for(auto i: vec)
+        cout<<"("<<i[0]<<" "<<i[1]<<") ";
+      cout<<"\n";
 }
