@@ -28,11 +28,28 @@ public:
         if(umap.find(temp)!=umap.end()) return umap[temp];
         
         for(int k=i+1;k<=j-1;k+=2){
-            int lT,rT,lF,rF; 
-            lT = boolParenthesization(str, i, k-1, true);
-            lF = boolParenthesization(str, i, k-1, false);
-            rT = boolParenthesization(str, k + 1, j, true);
-            rF = boolParenthesization(str, k + 1, j, false);
+            int lT,rT,lF,rF; string l1,l2,r1,r2;
+            l1=to_string(i); l1.push_back(' '); l1.append(to_string(k-1));
+            l1.push_back(' '); l1.append(to_string(true));
+    
+            l2=to_string(i); l2.push_back(' '); l2.append(to_string(k-1));
+            l2.push_back(' '); l2.append(to_string(false));
+    
+            r1=to_string(k+1); r1.push_back(' '); r1.append(to_string(j));
+            r1.push_back(' '); r1.append(to_string(true));
+    
+            r2=to_string(k+1); r2.push_back(' '); r2.append(to_string(j));
+            r2.push_back(' '); r2.append(to_string(false));
+            
+            if(umap.find(l1)!=umap.end()) lT=umap[l1];
+            else lT = boolParenthesization(str, i, k - 1, true);
+            if(umap.find(l2)!=umap.end()) lF=umap[l2];
+            else lF = boolParenthesization(str, i, k - 1, false);
+            if(umap.find(r1)!=umap.end()) rT=umap[r1];
+            else rT = boolParenthesization(str, k + 1, j, true);
+            if(umap.find(r2)!=umap.end()) rF=umap[r2];
+            else rF = boolParenthesization(str, k + 1, j, false);
+            
             if(str[k]=='&'){
                 if(isTrue) ans=ans+(lT*rT);
                 else ans=ans+(lT*rF)+(lF*rT)+(lF*rF);
