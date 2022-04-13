@@ -29,32 +29,10 @@ public:
         
         for(int k=i+1;k<=j-1;k+=2){
             int lT,rT,lF,rF; 
-            // string l1,l2,r1,r2;
-            // l1=to_string(i); l1.push_back(' '); l1.append(to_string(k-1));
-            // l1.push_back(' '); l1.append(to_string(true));
-            
-            // l2=to_string(i); l2.push_back(' '); l2.append(to_string(k-1));
-            // l2.push_back(' '); l2.append(to_string(false));
-            
-            // r1=to_string(k+1); r1.push_back(' '); r1.append(to_string(j));
-            // r1.push_back(' '); r1.append(to_string(true));
-            
-            // r2=to_string(k+1); r2.push_back(' '); r2.append(to_string(j));
-            // r2.push_back(' '); r2.append(to_string(false));
-            
-            // if(umap[l1]) lT=umap[l1];
-            // else 
             lT = boolParenthesization(str, i, k-1, true);
-            // if(umap[l2]) lF=umap[l2];
-            // else 
             lF = boolParenthesization(str, i, k-1, false);
-            // if(umap[r1]) rT=umap[r1];
-            // else 
             rT = boolParenthesization(str, k + 1, j, true);
-            // if(umap[r2]) rF=umap[r2];
-            // else 
             rF = boolParenthesization(str, k + 1, j, false);
-            
             if(str[k]=='&'){
                 if(isTrue) ans=ans+(lT*rT);
                 else ans=ans+(lT*rF)+(lF*rT)+(lF*rF);
