@@ -90,7 +90,7 @@ public:
 //     }
 //     return ans;
     // Way4: Using map TC: O(n), SC: O(n)
-    // unordered_map<int,int> umap; int n=nums.size(); int ans=0;
+    // unordered_map<int,int> umap; int n=nums.size(); int ans=-1;
     // for(int i=0;i<nums.size();i++)
     //     umap[nums[i]]++;
     // for(auto ele: umap){
