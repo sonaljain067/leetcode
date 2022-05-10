@@ -31,12 +31,6 @@ public:
         combination(k,n,combine,num+1);
     }
     vector<vector<int>> combinationSum3(int k, int n) {
-        // vector<vector<int>> ans; vector<int> temp;
-        // vector<int> arr(n);
-        // for(int i=0;i<n;i++) arr[i]=i+1;
-        // combinationSum(temp,k,0,0,ans);
-        // return ans;
-        
         vector<int> combine;
         combination(k,n,combine,1);
         return ans;
