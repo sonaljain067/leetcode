@@ -61,12 +61,13 @@ public:
         // return findUniquePaths(m-1,n-1);
         
         //Way4: Tabulation
-        // return findUniquePaths(m,n);
+        // return findUniquePaths(m,n); 
         
         //Way5: Math (using combination formula C)
         long res=1; int j=1;
-        if(m==1 || n==1) return 1;
+        if(m==1 || n==1) return 1; 
         m--; n--;
+         
         if(m<n){
             m=m+n; n=m-n; m=m-n;
         }
