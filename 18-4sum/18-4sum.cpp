@@ -28,7 +28,7 @@ public:
     
     
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        // Way1: Brute force TC: O(n^4), SC: O(n^n)
+        // Way1: Brute force TC: O(n^4), SC: O(n^n) -> TLE
 //         vector<vector<int>> ans; int n=nums.size();  
 //         for(int i=0;i<n-3;i++){
 //             for(int j=i+1;j<n-2;j++){
@@ -85,51 +85,51 @@ public:
         // return nSum(nums,target,0,4);
         
         //Way4: Hashmap TC: O(n^2), SC O(n^2)
-//         vector<vector<int>> ans; int n=nums.size(); sort(nums.begin(),nums.end());
-//         unordered_map<int,vector<pair<int,int>>> mp; if(n<4) return ans; 
-//         for(int i=0;i<n-1;i++)
-//             for(int j=i+1;j<n;j++) 
-//                 mp[nums[i]+nums[j]].push_back({i,j});
+        vector<vector<int>> ans; int n=nums.size(); sort(nums.begin(),nums.end());
+        unordered_map<int,vector<pair<int,int>>> mp; if(n<4) return ans; 
+        for(int i=0;i<n-1;i++)
+            for(int j=i+1;j<n;j++) 
+                mp[nums[i]+nums[j]].push_back({i,j});
         
-//         for(int i=0;i<n-1;i++){
-//             if(i>0 && nums[i]==nums[i-1]) continue;
-//             for(int j=i+1;j<n;j++){
-//                 if(j>i+1 && nums[j]==nums[j-1]) continue;
-//                 int sum=target-nums[i]-nums[j];
-//                 if(mp.find(sum)!=mp.end()){
-//                     for(auto it: mp[sum]){
-//                         int k=it.first, l=it.second;
-//                         if(k>j){
-//                             if(!ans.empty() && ans.back()[0]==nums[i] && ans.back()[1]==nums[j] && ans.back()[2]==nums[k] && ans.back()[3]==nums[l]) continue;
-//                             vector<int> temp={nums[i],nums[j],nums[k],nums[l]};
-//                             ans.push_back(temp);
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//         return ans;
-        
-        
-        //Way5: Two pointer with set(simplified) TC: O(n^2), SC: O(n^2)
-        int n=nums.size(); vector<vector<int>> ans; set<vector<int>> res;
-        if(n<4) return ans; sort(nums.begin(),nums.end());
-        
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-1;i++){
+            if(i>0 && nums[i]==nums[i-1]) continue;
             for(int j=i+1;j<n;j++){
-                int l=j+1, r=n-1,req=target-nums[i]-nums[j];
-                while(l<r){
-                    if(nums[l]+nums[r]==req) {
-                        res.insert({nums[i],nums[j],nums[l],nums[r]});
-                        if(nums[l]==nums[l+1]) l++; else r--;
+                if(j>i+1 && nums[j]==nums[j-1]) continue;
+                int sum=target-nums[i]-nums[j];
+                if(mp.find(sum)!=mp.end()){
+                    for(auto it: mp[sum]){
+                        int k=it.first, l=it.second;
+                        if(k>j){
+                            if(!ans.empty() && ans.back()[0]==nums[i] && ans.back()[1]==nums[j] && ans.back()[2]==nums[k] && ans.back()[3]==nums[l]) continue;
+                            vector<int> temp={nums[i],nums[j],nums[k],nums[l]};
+                            ans.push_back(temp);
+                        }
                     }
-                    else if(nums[l]+nums[r]>req) r--;
-                    else l++;
                 }
             }
         }
-        for(auto it: res) ans.push_back(it);
         return ans;
+        
+        
+        //Way5: Two pointer with set(simplified) TC: O(n^2), SC: O(n^2)
+//         int n=nums.size(); vector<vector<int>> ans; set<vector<int>> res;
+//         if(n<4) return ans; sort(nums.begin(),nums.end());
+        
+//         for(int i=0;i<n;i++){
+//             for(int j=i+1;j<n;j++){
+//                 int l=j+1, r=n-1,req=target-nums[i]-nums[j];
+//                 while(l<r){
+//                     if(nums[l]+nums[r]==req) {
+//                         res.insert({nums[i],nums[j],nums[l],nums[r]});
+//                         if(nums[l]==nums[l+1]) l++; else r--;
+//                     }
+//                     else if(nums[l]+nums[r]>req) r--;
+//                     else l++;
+//                 }
+//             }
+//         }
+//         for(auto it: res) ans.push_back(it);
+//         return ans;
         
         
         //Way6: Multimap TC: O(n^2)+O(nlogn), SC O(n) -> TLE
