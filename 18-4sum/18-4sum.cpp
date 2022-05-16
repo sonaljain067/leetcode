@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //for Way: Recursive
+    //for Way3: Recursive
     // vector<vector<int>> twoSum(vector<int> &nums,int target,int start){
     //     vector<vector<int>> result; int left=start,right=nums.size()-1;
     //     while(left<right){
@@ -46,10 +46,9 @@ public:
            
 //         }
 //         return ans;
+
         
-        //Way2: Sorting TC: O(n^3), SC: O(n^n)
-        
-        //Way3: two pointer & sorting TC: O(n^3)+o(nlogn), SC: O(n)
+        //Way2: two pointer & sorting TC: O(n^3)+o(nlogn), SC: O(n)
 //         vector<vector<int>> ans; int n=nums.size(); 
 //         if(n<4) return ans;
 //         sort(nums.begin(),nums.end());
@@ -80,11 +79,12 @@ public:
 //         }
 //         return ans;
         
-        //Way: Recursive
+        
+        //Way3: Recursive
         // sort(nums.begin(),nums.end());
         // return nSum(nums,target,0,4);
         
-        //Way: Hashmap TC: O(n^2), SC O(n^2)
+        //Way4: Hashmap TC: O(n^2), SC O(n^2)
 //         vector<vector<int>> ans; int n=nums.size(); sort(nums.begin(),nums.end());
 //         unordered_map<int,vector<pair<int,int>>> mp; if(n<4) return ans; 
 //         for(int i=0;i<n-1;i++)
@@ -110,8 +110,8 @@ public:
 //         }
 //         return ans;
         
-        //Way: Multimap
-        //Way: Two pointer with set(simplified)
+        
+        //Way5: Two pointer with set(simplified) TC: O(n^2), SC: O(n^2)
         int n=nums.size(); vector<vector<int>> ans; set<vector<int>> res;
         if(n<4) return ans; sort(nums.begin(),nums.end());
         
@@ -130,5 +130,30 @@ public:
         }
         for(auto it: res) ans.push_back(it);
         return ans;
+        
+        
+        //Way6: Multimap TC: O(n^2)+O(nlogn), SC O(n) -> TLE
+//         vector<vector<int>> result; multimap<int,pair<int,int>> mp; set<vector<int>> s;
+//         int n=nums.size();
+        
+//         for(int i=0;i<n;i++){
+//             for(int j=i+1;j<n;j++){
+                
+//                 int sum=nums[i]+nums[j]; auto res=mp.equal_range(target-sum);
+                
+//                 for(auto it=res.first; it!=res.second;it++){
+//                     int a=it->second.first, b=it->second.second;
+//                     if(a!=i && a!=j && b!=i && b!=j){
+//                         vector<int> quad={nums[a],nums[b],nums[i],nums[j]};
+//                         sort(quad.begin(),quad.end());
+//                         if(s.find(quad)==s.end()){
+//                             s.emplace(quad); result.emplace_back(move(quad));
+//                         }
+//                     }
+//                 }
+//                 mp.emplace(make_pair(sum,make_pair(i,j)));
+//             }
+//         }
+//         return result;
     }
 };
