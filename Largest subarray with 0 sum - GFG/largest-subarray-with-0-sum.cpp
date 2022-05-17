@@ -11,7 +11,18 @@ using namespace std;
 class Solution{
     public:
     int maxLen(vector<int>&A, int n){   
-        //Way:  Hashmap
+        //Brute Force TC: O(n^2), SC: O(1)
+        // int maxLen=0; 
+        // for(int i=0;i<n;i++){
+        //     int currSum=0;
+        //     for(int j=i;j<n;j++){
+        //         currSum+=A[j];
+        //         if(currSum==0) maxLen=max(maxLen,j-i+1);
+        //     }
+        // }
+        // return maxLen;
+        
+        //Way:  Hashmap TC: O(n), SC: O(n)
         unordered_map<int,int> umap; int maxLen=0, preSum=0; umap[0]=-1;
         for(int i=0;i<n;i++) {
             preSum+=A[i];
@@ -22,8 +33,6 @@ class Solution{
             else umap[preSum]=i;
         }
         return maxLen;
-        
-        //
     }
 };
 
