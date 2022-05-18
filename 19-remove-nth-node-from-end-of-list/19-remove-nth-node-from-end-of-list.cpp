@@ -12,23 +12,23 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         //Way: Recursive TC: O(m), SC:O(m)
-//         ListNode*l=head; int count=0,p=0;
-//         while(l!=NULL){
-//             ++count; l=l->next;
-//         } p=count-n;
+        ListNode*l=head; int count=0,p=0;
+        while(l!=NULL){
+            ++count; l=l->next;
+        } p=count-n;
         
-//         if(head==NULL) return NULL;
-//         head->next=removeNthFromEnd(head->next,n);
-//         if(p==0) return head->next;
-//         return head;
+        if(head==NULL) return NULL;
+        head->next=removeNthFromEnd(head->next,n);
+        if(p==0) return head->next;
+        return head;
         
         //Way: Two pointers  TC: O(m), SC: O(1)
-        ListNode *t1=head, *t2=head;
-        while(t1 && n--) t1=t1->next;
-        if(t1==NULL) return head->next;
-        while(t1->next){ t1=t1->next; t2=t2->next; }
-        t2->next=t2->next->next;
-        return head;
+        // ListNode *t1=head, *t2=head;
+        // while(t1 && n--) t1=t1->next;
+        // if(t1==NULL) return head->next;
+        // while(t1->next){ t1=t1->next; t2=t2->next; }
+        // t2->next=t2->next->next;
+        // return head;
         
         
         //Way: Stack TC: O(m+n), SC: O(m)
