@@ -76,13 +76,13 @@ public:
 //         return NULL;
         
         // Way: Two Pointers TC: O(n+m), SC O(1)
-        ListNode *ptr1=headA, *ptr2=headB;
-        while(ptr1!=ptr2){
-            if(!ptr1) ptr1=headB;
-            else ptr1=ptr1->next;
-            if(!ptr2) ptr2=headA;
-            else ptr2=ptr2->next;
-        }
-        return ptr1;
+        // ListNode *ptr1=headA, *ptr2=headB;
+        // while(ptr1!=ptr2){
+        //     if(!ptr1) ptr1=headB;
+        //     else ptr1=ptr1->next;
+        //     if(!ptr2) ptr2=headA;
+        //     else ptr2=ptr2->next;
+        // }
+        // return ptr1;
     }
 };
