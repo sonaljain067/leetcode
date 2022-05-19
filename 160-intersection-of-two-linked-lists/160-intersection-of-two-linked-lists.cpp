@@ -37,27 +37,27 @@ public:
 //         return headA;
         
         // Way: Brute force TC: O(n^m), SC: O(1)
-        ListNode *temp;
-        while(headA!=NULL){
-            temp=headB;
-            while(temp!=NULL){
-                if(headA==temp) return headA;
-                temp=temp->next;
-            }
-            headA=headA->next;
-        }
-        return NULL;
-        
-        // Way: Hashmap TC: O(n+m), SC: O(m)
-        // unordered_map<ListNode*,int> mp; 
+        // ListNode *temp;
         // while(headA!=NULL){
-        //     m[headA]++; headA=headA->next;
-        // }
-        // while(headB!=NULL){
-        //     if(m[headB]>0) return headB;
-        //     headB=headB->next;
+        //     temp=headB;
+        //     while(temp!=NULL){
+        //         if(headA==temp) return headA;
+        //         temp=temp->next;
+        //     }
+        //     headA=headA->next;
         // }
         // return NULL;
+        
+        // Way: Hashmap TC: O(n+m), SC: O(m)
+        unordered_map<ListNode*,int> mp; 
+        while(headA!=NULL){
+            mp[headA]++; headA=headA->next;
+        }
+        while(headB!=NULL){
+            if(mp[headB]>0) return headB;
+            headB=headB->next;
+        }
+        return NULL;
         
         // Way: Length Difference TC: O(m+n),SC: O(1)
 //         int n=0,m=0; ListNode *ptr1=headA, *ptr2=headB;
