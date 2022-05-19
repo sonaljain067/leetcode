@@ -43,10 +43,7 @@ public:
         temp->next=temp->next->next;
         return head;
         
-        //Way: Two runs TC: O(m+(m-n)), SC: O(1)
-        
-        
-        // Way: Single pointer 
+        //Way: Two runs/Single pointer TC: O(m+(m-n)), SC: O(1)  
 //         if(head->next==NULL) return NULL;
 //         ListNode*l=head; int count=0;
 //         while(l!=NULL){
