@@ -36,7 +36,7 @@ public:
 //         }
 //         return headA;
         
-        // Way: Brute force TC: O(n^m), SC: O(1)
+        // Way1: Brute force TC: O(n^m), SC: O(1)
         // ListNode *temp;
         // while(headA!=NULL){
         //     temp=headB;
@@ -48,7 +48,7 @@ public:
         // }
         // return NULL;
         
-        // Way: Hashmap TC: O(n+m), SC: O(m)
+        // Way2: Hashmap TC: O(n+m), SC: O(m)
         // unordered_map<ListNode*,int> mp; 
         // while(headA!=NULL){
         //     mp[headA]++; headA=headA->next;
@@ -59,23 +59,23 @@ public:
         // }
         // return NULL;
         
-        // Way: Length Difference TC: O(m+n),SC: O(1)
-        int n=0,m=0; ListNode *ptr1=headA, *ptr2=headB;
-        while(ptr1!=NULL){ n++; ptr1=ptr1->next; }
-        while(ptr2!=NULL){ m++; ptr2=ptr2->next; }
-        int t=abs(n-m);
-        if(n>m){
-            while(t){headA=headA->next; t--;}
-        }
-        else { while(t){ headB=headB->next; t--; }}
+        // Way3: Length Difference TC: O((m+n)+(l1-l2)+min(m,n)~O(n),SC: O(1)
+//         int n=0,m=0; ListNode *ptr1=headA, *ptr2=headB;
+//         while(ptr1!=NULL){ n++; ptr1=ptr1->next; }
+//         while(ptr2!=NULL){ m++; ptr2=ptr2->next; }
+//         int t=abs(n-m);
+//         if(n>m){
+//             while(t){headA=headA->next; t--;}
+//         }
+//         else { while(t){ headB=headB->next; t--; }}
         
-        while(headA!=NULL && headB!=NULL){
-            if(headA==headB) return headB;
-            headA=headA->next; headB=headB->next;
-        }
-        return NULL;
+//         while(headA!=NULL && headB!=NULL){
+//             if(headA==headB) return headB;
+//             headA=headA->next; headB=headB->next;
+//         }
+//         return NULL;
         
-        // Way: Two Pointers TC: O(n+m), SC O(1)
+        // Way4: Two Pointers/Tortoise&Hare TC: O(2*max(m,n))~O(n), SC O(1)
         // ListNode *ptr1=headA, *ptr2=headB;
         // while(ptr1!=ptr2){
         //     if(!ptr1) ptr1=headB;
@@ -84,5 +84,16 @@ public:
         //     else ptr2=ptr2->next;
         // }
         // return ptr1;
+        
+        //Way5: Stack TC: O(), SC: O()
+        ListNode *first=headA; stack<ListNode *> a, b;
+        while(first!=NULL){a.push(first); first=first->next; }
+        first=headB;
+        while(first!=NULL) {b.push(first); first=first->next; }
+        while(a.top()==b.top()){
+            first=a.top(); a.pop(); b.pop();
+            if(a.empty() || b.empty()) break;
+        } 
+        return first;
     }
 };
