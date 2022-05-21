@@ -91,9 +91,7 @@ int main(void) {
 }
 // } Driver Code Ends
 
-
 /* Node structure  used in the program
-
 struct Node{
 	int data;
 	struct Node * next;
@@ -107,27 +105,56 @@ struct Node{
 	
 };
 */
-
 /*  Function which returns the  root of 
     the flattened linked list. */
+// Node *merge(Node *first,Node *second){
+//     if(!first) return second;
+//     if(!second) return first;
+//     Node *ans;
+//     if(first->data < second->data){
+//         ans=first; ans->bottom=merge(first->bottom,second);
+//     } 
+//     else{
+//         ans=second; ans->bottom=merge(first,second->bottom);
+//     }
+//     ans->next=NULL;
+//     return ans;
+// }
+
 Node *merge(Node *first, Node *second){
-    if(!first) return second;
+    if(!first) return second; 
     if(!second) return first;
-    
     Node *ans;
-    if(first->data < second->data){
-        ans=first; 
-        ans->bottom=merge(first->bottom,second);
-    }
-    else{
-        ans=second;
-        ans->bottom=merge(first,second->bottom);
-    }
-    ans->next=NULL;
+    if(first->data < second->data) {ans=first; ans->bottom=merge(first->bottom,second);}
+    else { ans=second; ans->bottom=merge(first, second->bottom); }
     return ans;
 }
+Node *mergeLists(Node *first, Node *second){
+    Node *res=new Node(0); Node *temp=res;
+    while(first && second){
+        if(first->data < second->data){
+            temp->bottom=first;
+            temp=temp->bottom; first=first->bottom;
+        }
+        else{
+            temp->bottom=second;
+            temp=temp->bottom; second=second->bottom;
+        }
+    }
+    if(first) temp->bottom=first;
+    else temp->bottom=second;
+    return res->bottom;
+}
 Node *flatten(Node *root){
-    if(root==NULL || root->next==NULL) return root;
-    return merge(root,flatten(root->next));
+    //Way1: Recursive1 TC: O(n*n*m), SC: O(n*m)
+//   if(root==NULL || root->next==NULL) return root;
+//   return merge(root,flatten(root->next));
+
+    //Way2: Recursive2 TC: O(n), SC: O(n)
+   if(!root || !root->next) return root;
+   root->next=flatten(root->next); //recur for list on right
+   return mergeLists(root,root->next); //merging
+   
+   //Way: Hashing TC: O(n*m*logn), SC:O(n)
 }
 
