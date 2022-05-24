@@ -27,17 +27,28 @@ public:
         
         
         // Way: Two pointer TC: O(n), SC: O(1)
-        int n=height.size(),left=0, maxL=0, right=n-1, maxR=0,ans=0;
-        while(left<=right){
-            maxL=max(maxL,height[left]);
-            maxR=max(maxR,height[right]);
-            if(height[left]<height[right])
-                ans+=maxL-height[left++];
-                else ans+=maxR-height[right--];
-        }
-        return ans;
+        // int n=height.size(),left=0, maxL=0, right=n-1, maxR=0,ans=0;
+        // while(left<=right){
+        //     maxL=max(maxL,height[left]);
+        //     maxR=max(maxR,height[right]);
+        //     if(height[left]<height[right])
+        //         ans+=maxL-height[left++];
+        //         else ans+=maxR-height[right--];
+        // }
+        // return ans;
         
-        // Way: DP 
+        // Way: DP TC: O(n), SC: O(n)
+        int n=height.size(),val=0; vector<int> dp(n);
+        for(int i=0;i<n;i++) {
+            val=max(val,height[i]); dp[i]=val;
+        }
+        val=0;
+        for(int i=n-1;i>=0;i--){
+            val=max(val,height[i]); dp[i]=min(dp[i],val);
+        }
+        val=0;
+        for(int i=0;i<n;i++) val+=dp[i]-height[i];
+        return val;
         
          
     }
