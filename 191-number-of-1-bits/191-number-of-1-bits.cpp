@@ -4,8 +4,7 @@ public:
         // Kernighan algo
         long long int num=n, count=0;
         while(num!=0){
-            long long int mask=num&(-num);
-            num=num-mask;
+            num=num&(num-1);
             count++;
         }
         return count;
