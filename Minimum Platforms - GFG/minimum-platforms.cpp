@@ -24,24 +24,30 @@ class Solution{
         // return res;
         
         // Way2: Priority queue TC: O(nlogn), SC: O(n)
-        vector<pair<int,int>> arr2(n); int count=1;
-        for(int i=0;i<n;i++) arr2[i]={arr[i],dep[i]};
-        sort(arr2.begin(),arr2.end());
+        // vector<pair<int,int>> arr2(n); int count=1;
+        // for(int i=0;i<n;i++) arr2[i]={arr[i],dep[i]};
+        // sort(arr2.begin(),arr2.end());
         
-        priority_queue<int,vector<int>,greater<int>> pq;
-        pq.push(arr2[0].second);
+        // priority_queue<int,vector<int>,greater<int>> pq;
+        // pq.push(arr2[0].second);
         
-        for(int i=1;i<n;i++){
-            if(arr2[i].first <= pq.top()) count++;
-            else pq.pop();
-            pq.push(arr2[i].second);
-        }
-        return count;
+        // for(int i=1;i<n;i++){
+        //     if(arr2[i].first <= pq.top()) count++;
+        //     else pq.pop();
+        //     pq.push(arr2[i].second);
+        // }
+        // return count;
         
         
         // Way3: Merge Sort TC: O(nlogn), SC: O(1)
-        
-        
+        sort(arr,arr+n); sort(dep,dep+n);
+        int plate=1, res=1, i=1,j=0;
+        while(i<n && j<n){
+            if(arr[i]<=dep[j]) {plate++; i++;}
+            else if(arr[i]>dep[j]) {plate--; j++;}
+            if(plate>res) res=plate;
+        }
+        return res;
         
     }
 };
