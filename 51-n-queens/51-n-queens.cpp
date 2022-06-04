@@ -13,7 +13,7 @@ public:
         for (int i = row - 1, j = col + 1; i >= 0 && j < n; --i, ++j)
             if (arr[i][j] == 'Q') return false;
         return true;
-    }
+    }    
     void nQueen(vector<vector<string>>&res, vector<string>&que,int row, int &n){
         if (row == n){
             res.push_back(que);
@@ -28,7 +28,8 @@ public:
         }
     }
     vector<vector<string>> solveNQueens(int n) {
-        vector<vector<string>> res; vector<string> que(n,string(n,'.'));
+        vector<vector<string>> res; 
+        vector<string> que(n,string(n,'.'));
         nQueen(res, que, 0,n);
         return res;
     }
