@@ -33,7 +33,7 @@ public:
         return res;
     }
     int totalNQueens(int n) {
-        vector<vector<string>> ans=solveNQueens(n); int count=0;
+        vector<vector<string>> ans=solveNQueens(n); 
         return ans.size();
     }
 };
