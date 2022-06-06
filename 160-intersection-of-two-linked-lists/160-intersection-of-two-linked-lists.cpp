@@ -48,16 +48,16 @@ public:
         // }
         // return NULL;
         
-        // Way2: Hashmap TC: O(n+m), SC: O(m)
-        // unordered_map<ListNode*,int> mp; 
-        // while(headA!=NULL){
-        //     mp[headA]++; headA=headA->next;
-        // }
-        // while(headB!=NULL){
-        //     if(mp[headB]>0) return headB;
-        //     headB=headB->next;
-        // }
-        // return NULL;
+        // Way2: Hashmap TC: O(n+m), SC: O(m)~O(1)
+        unordered_map<ListNode*,int> mp; 
+        while(headA!=NULL){
+            mp[headA]++; headA=headA->next;
+        }
+        while(headB!=NULL){
+            if(mp[headB]>0) return headB;
+            headB=headB->next;
+        }
+        return NULL;
         
         // Way3: Length Difference TC: O((m+n)+(l1-l2)+min(m,n)~O(n),SC: O(1)
 //         int n=0,m=0; ListNode *ptr1=headA, *ptr2=headB;
@@ -85,15 +85,15 @@ public:
         // }
         // return ptr1;
         
-        //Way5: Stack TC: O(), SC: O()
-        ListNode *first=headA; stack<ListNode *> a, b;
-        while(first!=NULL){a.push(first); first=first->next; }
-        first=headB;
-        while(first!=NULL) {b.push(first); first=first->next; }
-        while(a.top()==b.top()){
-            first=a.top(); a.pop(); b.pop();
-            if(a.empty() || b.empty()) break;
-        } 
-        return first;
+        //Way5: Stack TC: ~O(n), SC: ~O(n)
+        // ListNode *first=headA; stack<ListNode *> a, b;
+        // while(first!=NULL){a.push(first); first=first->next; }
+        // first=headB;
+        // while(first!=NULL) {b.push(first); first=first->next; }
+        // while(a.top()==b.top()){
+        //     first=a.top(); a.pop(); b.pop();
+        //     if(a.empty() || b.empty()) break;
+        // } 
+        // return first;
     }
 };
