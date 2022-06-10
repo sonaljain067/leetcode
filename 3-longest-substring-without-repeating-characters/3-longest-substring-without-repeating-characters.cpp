@@ -3,7 +3,6 @@ public:
     int lengthOfLongestSubstring(string s) {
         //Way: Hashmap TC: O(n), SC: O(n)
 //         int count=0,max_len=0; unordered_map<char,int> uniqueDigit;
-        
 //         for(int i=0;i<s.size();i++){
 //             uniqueDigit[s[i]]+=1;
 //             if(uniqueDigit[s[i]]>1){
