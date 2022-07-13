@@ -58,32 +58,6 @@ public:
              }
              ans.push_back(level);
          }
-         return ans;
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+         return ans;     
     }
 };
